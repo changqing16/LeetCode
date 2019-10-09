@@ -1,28 +1,78 @@
+#include <algorithm>
 #include <iostream>
 #include <vector>
 using namespace std;
 
-vector<pair<int, int>> palin;
+int n = 8;
+vector<vector<int>> nums;
+vector<vector<string>> ans;
 
-void find_palin(string &str)
+void checkPalindrome(string s, int i, int j)
 {
-    int len = str.size();
-    int start, end;
-    for (int i = 0; i < len - 2; i++)
+    while (i >= 0 && j < s.size() && s[i] == s[j])
     {
-        for (int j = i + 2; j < len; j++)
-        {
-            start = i;
-            end = j;
-            while (start <= end)
-            {
-                if (str.at(start) == str.at(end))
-            }
-        }
+        nums[i].push_back(j);
+        i--;
+        j++;
+    }
+}
+
+void countSubstrings(string s)
+{
+    int len = s.size();
+    if (len == 0)
+        return;
+    for (int i = 0; i < len; i++)
+    {
+        checkPalindrome(s, i, i);
+        checkPalindrome(s, i, i + 1);
+    }
+}
+
+void help(string s, vector<string> &pre, int start)
+{
+    if (start == n)
+    {
+        ans.push_back(pre);
+        return;
+    }
+    for (int i = 0; i < nums[start].size(); i++)
+    {
+        pre.push_back(s.substr(start, nums[start][i] - start + 1));
+        help(s, pre, nums[start][i] + 1);
+        pre.pop_back();
     }
 }
 
 vector<vector<string>> partition(string s)
 {
-    vector<vector<string>> ans;
+    nums = vector<vector<int>>(s.size());
+    n = s.size();
+    countSubstrings(s);
+    vector<string> cur;
+    help(s, cur, 0);
+    return ans;
+}
+
+int main()
+{
+    string s = "aaabb";
+    // nums = vector<vector<int>>(s.size());
+    // countSubstrings(s);
+    // for (int i = 0; i < nums.size(); i++)
+    // {
+    //     for (int j = 0; j < nums[i].size(); j++)
+    //     {
+    //         cout << i << " " << nums[i][j] << endl;
+    //     }
+    // }
+    vector<vector<string>> tt = partition(s);
+    for (int i = 0; i < tt.size(); i++)
+    {
+        for (int j = 0; j < tt[i].size(); j++)
+        {
+            cout << tt[i][j] << " ";
+        }
+        cout << endl;
+    }
 }
