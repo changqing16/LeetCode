@@ -11,23 +11,18 @@ struct ListNode
 
 ListNode *sortList(ListNode *head)
 {
-    ListNode *ans = head;
+    ListNode *ans = new ListNode(-1);
     ListNode *cur, *index, *tmp;
-    cur = head->next;
+    cur = head;
     while (cur != NULL)
     {
         index = ans;
-        if (cur->val <= ans->val)
-        {
-            tmp = cur->next;
-            cur->next = ans;
-            ans = cur;
-            cur = tmp;
-        }
-        index = ans->next;
-        while (index->next != NULL)
-        {
-            
-        }
+        while (index->next != NULL && index->next->val < cur->next->val)
+            index = index->next;
+        tmp = cur->next;
+        cur->next = index->next;
+        index->next = cur;
+        cur = tmp;
     }
+    return ans->next;
 }
