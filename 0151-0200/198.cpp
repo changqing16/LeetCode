@@ -6,13 +6,7 @@ int rob(int *nums, int numsSize)
         return 0;
     if (numsSize == 1)
         return nums[0];
-    if (numsSize == 2)
-    {
-        if (nums[0] > nums[1])
-            return nums[0];
-        else
-            return nums[1];
-    }
+
     int f[numsSize];
     f[0] = nums[0];
     if (nums[0] > nums[1])
