@@ -2,31 +2,35 @@
 #include <vector>
 using namespace std;
 
+int bin_search(vector<int> &nums, int target, int s, int e)
+{
+    if (s > e)
+        return -1;
+    int mid = (s + e) / 2;
+    if (target == nums[mid])
+    {
+        return mid;
+    }
+
+    if (target > nums[mid])
+    {
+        if (target > nums[e] && nums[mid] < nums[e])
+            return bin_search(nums, target, s, mid - 1);
+        else
+            return bin_search(nums, target, mid + 1, e);
+    }
+    else
+    {
+        if (target <= nums[e] && nums[mid] > nums[e])
+            return bin_search(nums, target, mid + 1, e);
+        else
+            return bin_search(nums, target, s, mid - 1);
+    }
+}
+
 int search(vector<int> &nums, int target)
 {
-    int low = 0;
-    int high = nums.size() - 1;
-    while (low <= high)
-    {
-        int mid = low + (high - low) / 2;
-        if (nums[mid] == target)
-            return mid;
-        else if (nums[low] <= nums[mid])
-        { // left half is sorted
-            if (target >= nums[low] && target < nums[mid])
-                high = mid - 1;
-            else
-                low = mid + 1;
-        }
-        else
-        { // right half is sorted
-            if (target > nums[mid] && target <= nums[high])
-                low = mid + 1;
-            else
-                high = mid - 1;
-        }
-    }
-    return -1;
+    return bin_search(nums, target, 0, nums.size() - 1);
 }
 
 int main()

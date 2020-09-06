@@ -1,5 +1,15 @@
 #include <stdio.h>
 
+    // int rob(vector<int>& nums) { 
+    //     int n = nums.size(), pre = 0, cur = 0;
+    //     for (int i = 0; i < n; i++) {
+    //         int temp = max(pre + nums[i], cur);
+    //         pre = cur;
+    //         cur = temp;
+    //     }
+    //     return cur;
+    // }
+
 int rob(int *nums, int numsSize)
 {
     if (numsSize == 0)
