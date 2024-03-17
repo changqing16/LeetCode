@@ -1,0 +1,22 @@
+{
+    // Controls the font family.
+    "editor.fontFamily": "Operator Mono",
+    // Controls the line height. Use 0 to compute the lineHeight from the fontSize.
+    "editor.lineHeight": 24,
+    // Enables font ligatures
+    "editor.fontLigatures": true,
+    // Controls if file decorations should use badges.
+    "explorer.decorations.badges": false,
+    "editor.fontSize": 16,
+    "files.associations": {
+        "vector": "cpp"
+    },
+    "C_Cpp.debugShortcut": false,
+    "code-runner.executorMap": {
+        "cpp": "g++ -fdiagnostics-color=always -g $fullFileName -o a.out && ./a.out"
+    },
+    "code-runner.enableAppInsights": false,
+    "code-runner.preserveFocus": false,
+    "code-runner.saveFileBeforeRun": true,
+    "code-runner.ignoreSelection": true
+}
