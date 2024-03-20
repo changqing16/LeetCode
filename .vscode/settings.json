@@ -2,7 +2,7 @@
     // Controls the font family.
     "editor.fontFamily": "Operator Mono",
     // Controls the line height. Use 0 to compute the lineHeight from the fontSize.
-    "editor.lineHeight": 24,
+    "editor.lineHeight": 22,
     // Enables font ligatures
     "editor.fontLigatures": true,
     // Controls if file decorations should use badges.
